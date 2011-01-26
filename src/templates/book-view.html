@@ -1,0 +1,30 @@
+<!DOCTYPE html5>
+<html>
+    <head>
+        <title>Reading {{ info['title'] }}</title>
+        <script src="{{ url_for('static', filename="scripts/prototype.js") }}"> </script>
+        <link href="{{ url_for('static', filename="styles/book-view.css") }}" type="text/css" rel="stylesheet"> </link>
+        <script src="{{ url_for('static', filename="scripts/book-view.js") }}"> </script>
+    </head>
+    <body>
+        <h1>{{ info['title'] }} by {{ info['author'] }}</h1>
+        <div id="book_pane">
+            <div id="the_book">
+                {{ book_content|safe }}
+            </div>
+        </div>
+
+        <div id="info_pane">
+            <ul id="book_feed">
+                <li>Guest456 opened this book</li>
+            </ul>
+        </div>
+
+        <div id="comment_form">
+            <form id="comment_form_form" method="POST" action="/api/book/comments">
+                <textarea rows="7" cols="40" name="comment_text"></textarea>
+                    <input type="submit" id="comment_form_submit"></input>
+            </form>
+        </div>
+    </body>
+</html>

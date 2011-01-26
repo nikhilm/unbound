@@ -1,0 +1,14 @@
+<!DOCTYPE html5>
+<html>
+    <head>
+        <title>Book List</title>
+    </head>
+    <body>
+        <h1>Books</h1>
+        <ul>
+        {% for book in books %}
+        <li><a href="book/{{ book['id'] }}">{{ book['title'] }} by {{ book['author'] }}</a></li>
+        {% endfor %}
+        </ul>
+    </body>
+</html>

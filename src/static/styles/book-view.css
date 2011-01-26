@@ -1,0 +1,28 @@
+
+#book_pane {
+    float: left;
+    width: 60%;
+    display: inline;
+}
+
+#info_pane {
+    float: left:
+    width: 40%;
+    display: inline;
+    border-left: solid 5px red;
+    position: fixed;
+    left: 65%;
+    height: 100%;
+}
+
+#comment_form {
+    position: fixed;
+    top: 1%;
+    left: 65%;
+    width: 30%;
+    background: cyan
+}
+
+.highlight {
+    background: red;
+}
