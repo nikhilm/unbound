@@ -1,0 +1,268 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Unbound</title>
+        <script src="{{ url_for('static', filename="scripts/prototype.js") }}"> </script>
+<script language="javascript" type="text/javascript">
+var FeedUpdater = function() {
+    var endpoint = '/api/updates/user/{{username}}';
+
+    function message(response) {
+        var activity = response.responseJSON.stream;
+        $('activity_feed').insert({ top: '<li>'+activity.text });
+        if( $('activity_feed').childElements().length > 8 )
+            $('activity_feed').childElements().last().remove();
+    }
+
+    function poll() {
+        new Ajax.Request(endpoint, {
+            onSuccess: message,
+            method: 'get'
+        });
+    }
+
+    setInterval(poll, 2000);
+}
+
+function initialize() {
+	new FeedUpdater();
+}
+Event.observe(window, 'load', initialize);
+</script>
+<style type="text/css">
+<!--
+body {
+	font-family: "Droid Sans", sans-serif;
+}
+
+.notification {
+	background: red;
+	width: 20px;
+	border-radius: 10px;
+	text-align: center;
+}
+
+.notification:hover {
+	background: red;
+	width: 30px;
+	border-radius: 10px;
+}
+
+#headerlayer {
+	position:absolute;
+	width:1010px;
+	height:66px;
+	z-index:1;
+	top: 5px;
+	left: 13px;
+}
+#searchbarlayer {position:absolute;
+		width:239px;
+		height:9px;
+		z-index:1;
+		left: 784px;
+		top: 7px;
+}
+#friendslayer {position:absolute;
+		width:465px;
+		height:90px;
+		z-index:2;
+		left: 561px;
+		top: 177px;
+		border: solid 1px #01a1a2;
+		border-radius: 10px;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+}
+#profiledatalayer {position:absolute;
+		width:376px;
+		height:120px;
+		z-index:3;
+		left: 163px;
+		top: 144px;
+		border: solid 1px #01a1a2;
+		border-radius: 10px;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+}
+#librarylayer {	position:absolute;
+	width:534px;
+	height:334px;
+	z-index:4;
+	left: 12px;
+	top: 279px;
+		border: solid 1px #01a1a2;
+		border-radius: 10px;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+}
+#universalfeedlayer {
+	position:absolute;
+	width:463px;
+	height:332px;
+	z-index:1;
+	left: 562px;
+	top: 279px;
+		border: solid 1px #01a1a2;
+		border-radius: 10px;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+}
+#photolayer {	position:absolute;
+	width:132px;
+	height:131px;
+	z-index:5;
+	top: 140px;
+	left: 11px;
+}
+#footerlayer {
+	position:absolute;
+	width:1013px;
+	height:39px;
+	z-index:1;
+	left: 12px;
+	top: 650px;
+}
+.style1 {
+	color: #6633FF;
+	font-style: italic;
+}
+.style2 {
+	
+	color: #01a2a6;
+	font-size: 14px;
+}
+body {
+	background-image: url();
+	background-color: #ffffa6;
+}
+.style4 {
+	
+	font-size: 45px;
+	color: #01a2a6;
+}
+#Layer2 {
+	position:absolute;
+	width:456px;
+	height:303px;
+	z-index:7;
+	left: 564px;
+	top: 252px;
+}
+.style6 {color: #01a2a6; font-weight: bold; }
+#Layer3 {
+	position:absolute;
+	width:227px;
+	height:36px;
+	z-index:8;
+	left: 563px;
+	top: 130px;
+}
+.style8 {
+	color: #01a2a6;
+	font-size: 24px;
+}
+#Layer4 {
+	position:absolute;
+	width:123px;
+	height:46px;
+	z-index:9;
+	left: 759px;
+	top: 132px;
+}
+-->
+</style>
+</head>
+
+<body>
+<div id="headerlayer"><img src="/static/images/logo-text.png" alt="logo" width="350" > </div>
+<p>&nbsp;</p>
+<div id="searchbarlayer" >
+  <form id="form1" name="form1" method="post" action="">
+	<div align="right">
+	  <input type="text" name="textfield" />
+	  <input name="Search" type="submit" id="Search" value="Search" STYLE="font-size:12pt; background-color:#01a2a6; color:ffffff"/>
+	</div>
+  </form>
+</div>
+<div id="friendslayer">
+  <table width="464" height="88" border="0">
+	<tr>
+	  <td width="74"><img src="/static/images/image1.jpg" alt="img1" width="74" height="74" /></td>
+	  <td width="74"><img src="/static/images/image2.jpg" alt="img2" width="74" height="74" /></td>
+	  <td width="80"><img src="/static/images/image3.jpeg" alt="img3" width="80" height="80" /></td>
+	  <td width="74"><img src="/static/images/image4.jpg" alt="img4" width="74" height="74" /></td>
+	  <td width="80"><img src="/static/images/image5.jpg" alt="img5" width="80" height="80" /></td>
+	</tr>
+  </table>
+</div>
+<div id="profiledatalayer" >
+  <table width="374" height="119" border="0">
+	<tr>
+	  <td width="84">Name</td>
+	  <td width="274">Daniel J. Xavier</td>
+	</tr>
+	<tr>
+	  <td>Email</td>
+	  <td>unbounduser@openedu.com  </td>
+	</tr>
+	<tr>
+	  <td>College</td>
+	  <td>Massachusetts Institute of Technology</td>
+	</tr>
+	<tr>
+	  <td>City</td>
+	  <td>Boston</td>
+	</tr>
+  </table>
+</div>
+<div class="style1" id="footerlayer" style="border:2px outset #01a2a6;">
+    <p align="center" class="style2 style7">Team Unbound 2011 (MIT Media Lab + COEP Design Innovation Workshop) </p>
+</div>
+<div id="photolayer" style="border:2px outset #01a2a6;"><img src="/static/images/profileimage.jpg" alt="profileimage" width="130" height="130" /></div>
+<div id="librarylayer" >
+  <div align="center">
+    <h2 class="style6">Library</h2>
+  </div>
+  <table width="534" height="196" border="0">
+    <tr>
+        <td width="464"><a href="/book/1">Dive into Python</a></td>
+      <td width="50" class="notification">4</td>
+    </tr>
+    <tr>
+        <td><a href="/book/3">A Byte of Python</a></td>
+      <td class="notification">1</td>
+    </tr>
+    <tr>
+      <td>Book C </td>
+      <td class="notification">2</td>
+    </tr>
+    <tr>
+      <td>Book D </td>
+      <td class="notification">1</td>
+    </tr>
+    <tr>
+      <td>Book E </td>
+    </tr>
+    <tr>
+      <td>Book F </td>
+    </tr>
+    <tr>
+      <td>Book G </td>
+    </tr>
+  </table>
+</div>
+<div id="universalfeedlayer">
+    <h2 align="left" class="style6"><img src="/static/images/rss1.png" alt="rss" width="45" height="39" /></h2>
+    <ul id="activity_feed">
+    </ul>
+</div>
+<div id="Layer3"><img src="/static/images/group.png" alt="gropus" width="54" height="42" /><span class="style8">Groups</span></div>
+<div class="style8" id="Layer4"><img src="/static/images/rating.png" alt="rating" width="54" height="37" />Rating</div>
+<!--<div style="width:200px;height:100px;border:2px outset #01a2a6;">
+HTML border code - or should that read CSS border code?
+</div>
+-->
+</body>
+</html>

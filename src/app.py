@@ -121,5 +121,14 @@ def user_book_updates(id):
     print data
     return jsonify(stream=data)
 
+@app.route("/api/updates/user/<username>")
+def user_updates(username):
+    r = redis.Redis(db=REDIS_DB_NUM)
+    return jsonify(stream=json.loads(r.srandmember('user:stream')))
+
+@app.route("/user/<username>")
+def user_profile(username):
+    return render_template('profile.html', username=session['username'])
+
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')

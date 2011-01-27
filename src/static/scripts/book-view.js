@@ -2,10 +2,6 @@
 
 var highlighted_para = null;
 
-function commentLink() {
-    return '<a href="#" class="comment_link">Comment</a>';
-}
-
 function addComments(response) {
     console.log(response.responseJSON);
     var ul = document.createElement('ul');
@@ -16,14 +12,11 @@ function addComments(response) {
 }
 
 function commentPosted(response) {
-    var el = response.responseJSON.comment;
-    $$('#comment_form ul')[0].insert("<li>"+el.text + " by " + el.author + " on " + new Date(el.created) +"</li>");
-    $$('#comment_form textarea')[0].setValue("");
+    $$('#comment_form textarea')[0].clear();
 }
 
 function setupCommentArea(para) {
-    $('comment_form').show();
-    $('comment_form').style.display = '';
+    $('comment_form').style.display = 'block';
     $$('#comment_form ul').each(function (el) {
         el.remove();
     });
@@ -48,11 +41,23 @@ function setupCommentArea(para) {
             method: 'post'
         });
         Event.stop(e);
+        e.preventDefault();
+        return false;
+    });
+    $A($('comment_form_form').childElements()).last().observe('click', function(e) {
+        $('comment_form_form').request({
+            onSuccess: commentPosted.bind(id),
+            parameters: { id: id },
+            method: 'post'
+        });
+        Event.stop(e);
+        e.preventDefault();
+        return false;
     });
 }
 
 function hideComments() {
-    $('comment_form').hide();
+    $('comment_form').style.display = 'none';
 }
 
 var UserBookUpdater = function() {
@@ -107,8 +112,10 @@ var BookUpdater = function() {
 }
 
 function pControls() {
-    var elt = '<div class="p_controls">' + commentLink();
-    return $(elt);
+    var mediaLink = '<a href="#" class="media_link"><img src="/static/images/movie.png" width="30" border="0"></a>';
+    var elt = '<div class="p_controls">' + mediaLink + '</div>';
+
+    return elt;
 }
 
 function initialize() {
@@ -117,18 +124,32 @@ function initialize() {
         var control = pControls();
         $(p).observe('click', function(e) {
             setupCommentArea(p);
-            //if( highlighted_para )
-            //    highlighted_para.removeClassName("highlight");
-            //p.addClassName("highlight");
-            //highlighted_para = p;
-            //e.preventDefault();
+            Event.stop(e);
+            return false;
         });
+        $(p).observe('mouseover', function(e) {
+            var children = $(p).childElements();
+            $(p).addClassName('current_para');
+            $A(children)[children.length-1].style.display = 'block';
+
+            var mlink = $A(children[children.length-1].childElements())[0];
+            $(mlink).observe('mouseover', function() {
+                $('videolayer').style.display = 'block';
+            });
+        });
+        $(p).observe('mouseout', function(e) {
+            var children = $(p).childElements();
+            $A(children)[children.length-1].style.display = 'none';
+            $(p).removeClassName('current_para');
+        });
+        $(p).insert("  (3 comments)");
         $(p).insert(control);
     });
     Event.observe(window, 'keydown', function(e) {
         if( e.keyCode == Event.KEY_ESC )
             hideComments();
     });
+    //Event.observe(window, 'click', hideComments);
     new UserBookUpdater();
     new BookUpdater();
 }

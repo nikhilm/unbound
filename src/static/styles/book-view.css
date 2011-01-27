@@ -22,10 +22,11 @@ body {
 
 #comment_form {
     position: fixed;
-    top: 1%;
-    left: 65%;
+    top: 8%;
+    left: 60%;
     width: 30%;
-    background: cyan
+    background: rgba(1, 162, 166, 0.8);
+    display: none;
 }
 
 .highlight {
@@ -55,4 +56,20 @@ h1 {
 #username {
     text-align: right;
     width: 100%;
+}
+
+.p_controls {
+    display: none;
+    float: right;
+}
+
+.current_para {
+    background: rgb(255, 255, 166);
+}
+
+#videolayer {
+    display: none;
+    position: absolute;
+    left: 60%;
+    top: 9%;
 }
