@@ -3,6 +3,7 @@
     <head>
         <title>Reading {{ info['title'] }}</title>
         <script src="{{ url_for('static', filename="scripts/prototype.js") }}"> </script>
+        <script src="{{ url_for('static', filename="scripts/emphasis-src.js") }}"> </script>
         <link href="{{ url_for('static', filename="styles/book-view.css") }}" type="text/css" rel="stylesheet"> </link>
         <script src="{{ url_for('static', filename="scripts/book-view.js") }}"> </script>
     </head>
@@ -15,8 +16,8 @@
         </div>
 
         <div id="info_pane">
+            <p id="username">Welcome {{ username }}</p>
             <ul id="book_feed">
-                <li>Guest456 opened this book</li>
             </ul>
         </div>
 
@@ -25,6 +26,7 @@
                 <textarea rows="7" cols="40" name="comment_text"></textarea>
                     <input type="submit" id="comment_form_submit"></input>
             </form>
+            <a href="#" onclick="$('comment_form').hide()">Close</a>
         </div>
     </body>
 </html>

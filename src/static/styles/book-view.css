@@ -1,15 +1,20 @@
+body {
+    margin: 0;
+    padding: 0;
+}
 
 #book_pane {
     float: left;
     width: 60%;
     display: inline;
+    padding-right: 10px;
+    border-right: solid 5px #ddd;
 }
 
 #info_pane {
     float: left:
-    width: 40%;
+    width: 60%;
     display: inline;
-    border-left: solid 5px red;
     position: fixed;
     left: 65%;
     height: 100%;
@@ -25,4 +30,29 @@
 
 .highlight {
     background: red;
+}
+
+h1 {
+    background: #aaa;
+    padding: 20px;
+    width: 100%;
+    margin: 0;
+    color: white;
+}
+
+#book_feed {
+    list-style-type: none;
+    width: 90%;
+}
+
+#book_feed li {
+    background: rgb(255, 255, 166);
+    padding: 10px;
+    border-top: solid 1px #ddd;
+    width: 100%;
+}
+
+#username {
+    text-align: right;
+    width: 100%;
 }

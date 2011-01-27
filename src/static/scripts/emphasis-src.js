@@ -40,12 +40,13 @@ var Emphasis = {
         this.p  = false; // Paragraph Anchor
         this.h  = false; // Highlighted paragraphs
         this.s  = false; // Highlighted sentences
-        this.vu = false; // Are paragraph links visible or not
+        this.vu = true; // Are paragraph links visible or not
         this.kh = "|";
 
         this.addCSS();
         this.readHash();
-        Event.observe(window, 'keydown', this.keydown);
+        this.paragraphInfo(true);
+        //Event.observe(window, 'keydown', this.keydown);
     },
 
     config: function() {
@@ -68,7 +69,7 @@ var Emphasis = {
     addCSS: function() {
     /*  Inject the minimum styles rules required */
         var st = document.createElement('style');
-        st.innerHTML = 'p.' + this.classActive + ' span { background-color:#f2f4f5; } p span.' + this.classHighlight + ' { background-color:#fff0b3; } span.' + this.classInfo + ' { position:absolute; margin:-1px 0px 0px -8px; padding:0; font-size:10px; background-color: transparent !important} span.' + this.classInfo + ' a { text-decoration: none; } a.' + this.classActiveAnchor + ' { color: #000; font-size: 11px; }';
+        st.innerHTML = 'p.' + this.classActive + ' span { background-color:#e2e4e5; } p span.' + this.classHighlight + ' { background-color:#fff0b3; } span.' + this.classInfo + ' { position:absolute; margin:-1px 0px 0px -8px; padding:0; font-size:10px; background-color: transparent !important} span.' + this.classInfo + ' a { text-decoration: none; } a.' + this.classActiveAnchor + ' { color: #000; font-size: 11px; }';
         document.getElementsByTagName("head")[0].appendChild(st);
     },
 

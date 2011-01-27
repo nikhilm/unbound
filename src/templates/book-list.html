@@ -5,6 +5,8 @@
     </head>
     <body>
         <h1>Books</h1>
+        <p>Welcome {{ username }}</p>
+        <p>Start reading books</p>
         <ul>
         {% for book in books %}
         <li><a href="book/{{ book['id'] }}">{{ book['title'] }} by {{ book['author'] }}</a></li>
