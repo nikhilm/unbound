@@ -2,9 +2,27 @@
 <html>
     <head>
         <title>Unbound</title>
+        <style type="text/css">
+            body {
+                font-family: "Droid Sans", sans-serif;
+            }
+
+            input[type="submit"] {
+                background: #01a2a6;
+                color: white;
+                border: none;
+                width: 60px;
+                height: 20px;
+                border-radius: 5px;
+            }
+
+            input[type="submit"]:hover {
+                background: #01afff;
+            }
+        </style>
     </head>
     <body>
-        <h1>Unbound</h1>
+        <h1><img src="/static/images/logo-text.png" alt="Unbound" width="300"></img></h1>
         <form action="/login" method="POST">
             <label for="username">Username</label>
             <input type="text" name="username"></input>
