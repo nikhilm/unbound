@@ -19,7 +19,7 @@ def index():
 @app.route("/login", methods=['POST'])
 def login():
     session['username'] = request.form['username']
-    return redirect(url_for('list_of_books'))
+    return redirect('/user/%s'%session['username'])
 
 @app.route("/books")
 def list_of_books():
